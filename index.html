@@ -146,8 +146,8 @@
         const totalStatistics = map.append("div")
             .attr("id", "total-statistics")
             .style("position", "absolute")
-            .style("width", window.innerWidth <= 992 ? "60%" : "35%")
-            .style("height", "41%")
+            .style("width", "fit-content")
+            .style("height", "43%")
             .style("box-shadow", "0 0 15px 1px black")
             .style("overflow", "auto")
             .style("left", "0")
@@ -224,12 +224,10 @@
                 if (window.innerWidth <= 992) {
                     map.style("width", "100%")
                     map.style("height", "500px")
-                    totalStatistics.style("width", "60%")
                 }
                 else {
                     map.style("width", "80%")
                     map.style("height", "800px")
-                    totalStatistics.style("width", "35%")
                 }
                 loadMap()
             })
