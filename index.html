@@ -280,7 +280,9 @@
                             .style("stroke-width", "0.5")
                             .style("fill", (d) => {
                                 if (currentNationality === "all") {
-                                    return nationalitiesColorScale(calculateMajorNationality(currentYear === "2013." ? d.properties.population2013 : d.properties.population1991).name)
+                                    const majorNationality = calculateMajorNationality(currentYear === "2013." ? d.properties.population2013 : d.properties.population1991)
+                                    console.log(majorNationality)
+                                    return majorNationality.name === "unknown" ? "#303030" : nationalitiesColorScale(majorNationality.name)
                                 }
                                 else {
                                     return nationalitiesColorScale(currentNationality)
@@ -450,7 +452,7 @@
                 .style("flex-direction", "column")
 
             legend.append("h4")
-                .text("Overall: " + population.overall)
+                .text("Overall: " + (population.overall === null ? "Unknown" : population.overall))
 
             legend.selectAll("div")
                 .data(nationalities.filter((v) => v !== "all"))
@@ -683,7 +685,7 @@
 
         function calculateMajorNationality(population) {
             if (population.overall === null) {
-                return { name: "others", count: null }
+                return { name: "unknown", count: null }
             }
             if (population.croats > population.bosniaks && population.croats > population.serbs) {
                 return { name: "croats", count: population.croats }
