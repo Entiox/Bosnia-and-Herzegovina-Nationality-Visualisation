@@ -281,7 +281,6 @@
                             .style("fill", (d) => {
                                 if (currentNationality === "all") {
                                     const majorNationality = calculateMajorNationality(currentYear === "2013." ? d.properties.population2013 : d.properties.population1991)
-                                    console.log(majorNationality)
                                     return majorNationality.name === "unknown" ? "#303030" : nationalitiesColorScale(majorNationality.name)
                                 }
                                 else {
